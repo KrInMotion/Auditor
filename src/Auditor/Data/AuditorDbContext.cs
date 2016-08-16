@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Auditor.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,10 @@ namespace Auditor.Data
 {
     public class AuditorDbContext: DbContext
     {
+        public DbSet<WifiCheck> WifiChecks { get; set; }
+
         public AuditorDbContext(DbContextOptions<AuditorDbContext> options): base(options)
         {
-
         }
     }
 }
