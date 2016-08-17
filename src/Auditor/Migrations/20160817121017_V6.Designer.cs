@@ -8,9 +8,10 @@ using Auditor.Data;
 namespace Auditor.Migrations
 {
     [DbContext(typeof(AuditorDbContext))]
-    partial class AuditorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160817121017_V6")]
+    partial class V6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

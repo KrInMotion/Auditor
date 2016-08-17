@@ -8,31 +8,23 @@ using Auditor.Data;
 namespace Auditor.Migrations
 {
     [DbContext(typeof(AuditorDbContext))]
-    partial class AuditorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160817113814_V2")]
+    partial class V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Auditor.Models.Territory", b =>
+            modelBuilder.Entity("Auditor.Models.Region", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Capital")
-                        .HasAnnotation("MaxLength", 255);
-
-                    b.Property<int>("DistrictId");
-
-                    b.Property<string>("Region")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
-
                     b.HasKey("Id");
 
-                    b.ToTable("Territories");
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Auditor.Models.User", b =>
@@ -60,25 +52,19 @@ namespace Auditor.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
+                    b.Property<string>("Address");
 
                     b.Property<DateTime>("CheckDate");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("getdate()");
+                    b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("Note");
 
-                    b.Property<string>("Provider")
-                        .IsRequired()
-                        .HasAnnotation("MaxLength", 255);
+                    b.Property<string>("Provider");
+
+                    b.Property<int>("RegionId");
 
                     b.Property<int>("TaskTime");
-
-                    b.Property<int>("TerritoryId");
 
                     b.Property<int>("UserId");
 
@@ -86,7 +72,7 @@ namespace Auditor.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TerritoryId");
+                    b.HasIndex("RegionId");
 
                     b.HasIndex("UserId");
 
@@ -95,9 +81,9 @@ namespace Auditor.Migrations
 
             modelBuilder.Entity("Auditor.Models.WifiCheck", b =>
                 {
-                    b.HasOne("Auditor.Models.Territory", "Territory")
+                    b.HasOne("Auditor.Models.Region", "Region")
                         .WithMany()
-                        .HasForeignKey("TerritoryId")
+                        .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Auditor.Models.User", "Responsible")

@@ -8,9 +8,10 @@ using Auditor.Data;
 namespace Auditor.Migrations
 {
     [DbContext(typeof(AuditorDbContext))]
-    partial class AuditorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160817120855_V5")]
+    partial class V5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -22,6 +23,7 @@ namespace Auditor.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Capital")
+                        .IsRequired()
                         .HasAnnotation("MaxLength", 255);
 
                     b.Property<int>("DistrictId");
