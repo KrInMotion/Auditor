@@ -9,5 +9,6 @@ namespace Auditor.Models
     {
         public int Id { get; set; }
         public string Address { get; set; }
+        public User Responsible { get; set; }
     }
 }
