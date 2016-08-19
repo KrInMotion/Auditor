@@ -40,8 +40,8 @@ namespace Auditor
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseDeveloperExceptionPage();
             } else
             {
                 app.UseExceptionHandler("/Home/Error");

@@ -15,5 +15,10 @@ namespace Auditor.Controllers
         {
             return View();
         }
+
+        public IActionResult ErrorStatus(int id)
+        {
+            return View("ErrorStatus",id);
+        }
     }
 }
