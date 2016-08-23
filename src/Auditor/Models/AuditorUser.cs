@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Auditor.Models
 {
-    public class User
+    public class AuditorUser
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

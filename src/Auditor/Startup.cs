@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using Auditor.Data;
 using Microsoft.EntityFrameworkCore;
+using Auditor.Models;
 
 namespace Auditor
 {
@@ -31,6 +32,10 @@ namespace Auditor
         {
             services.AddDbContext<AuditorDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<AuditorDbContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc();
         }
 
@@ -46,9 +51,9 @@ namespace Auditor
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseStatusCodePagesWithReExecute("/Home/ErrorStatus/{0}");
             app.UseStaticFiles();
+            app.UseIdentity();
+            app.UseStatusCodePagesWithReExecute("/Home/ErrorStatus/{0}");
             app.UseMvc(route =>
             {
                 route.MapRoute(

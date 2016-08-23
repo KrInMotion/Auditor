@@ -11,7 +11,7 @@ namespace Auditor.Models
         public string Address { get; set; }
         public string Provider { get; set; }
         public int UserId { get; set; }
-        public User Responsible { get; set; }
+        public AuditorUser Responsible { get; set; }
         public int TerritoryId { get; set; }
         public Territory Territory { get; set; }
         public DateTime CheckDate { get; set; }

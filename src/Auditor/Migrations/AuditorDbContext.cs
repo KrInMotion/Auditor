@@ -1,4 +1,5 @@
 ﻿using Auditor.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Auditor.Data
 {
-    public class AuditorDbContext: DbContext
+    public class AuditorDbContext: IdentityDbContext<AppUser>
     {
         public DbSet<WifiCheck> WifiChecks { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<AuditorUser> AuditorUsers { get; set; }
         public DbSet<Territory> Territories { get; set; }
 
         public AuditorDbContext(DbContextOptions<AuditorDbContext> options): base(options)
@@ -18,6 +19,7 @@ namespace Auditor.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.Entity<WifiCheck>(entity =>
                 {
                     entity.Property(x => x.Address).IsRequired().HasMaxLength(255);
