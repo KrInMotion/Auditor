@@ -8,9 +8,10 @@ using Auditor.Data;
 namespace Auditor.Migrations
 {
     [DbContext(typeof(AuditorDbContext))]
-    partial class AuditorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160823113550_V8")]
+    partial class V8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -85,34 +86,19 @@ namespace Auditor.Migrations
                     b.ToTable("AuditorUsers");
                 });
 
-            modelBuilder.Entity("Auditor.Models.TaskResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("NeedReAction");
-
-                    b.Property<string>("ResultName")
-                        .HasAnnotation("MaxLength", 256);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TaskResults");
-                });
-
             modelBuilder.Entity("Auditor.Models.Territory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Capital")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.Property<int>("DistrictId");
 
                     b.Property<string>("Region")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 256);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.HasKey("Id");
 
@@ -126,7 +112,7 @@ namespace Auditor.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 256);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.Property<DateTime>("CheckDate");
 
@@ -138,7 +124,7 @@ namespace Auditor.Migrations
 
                     b.Property<string>("Provider")
                         .IsRequired()
-                        .HasAnnotation("MaxLength", 256);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.Property<int?>("ResponsibleId");
 
@@ -276,7 +262,7 @@ namespace Auditor.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole");
 
                     b.Property<string>("Description")
-                        .HasAnnotation("MaxLength", 256);
+                        .HasAnnotation("MaxLength", 255);
 
                     b.ToTable("AppRole");
 

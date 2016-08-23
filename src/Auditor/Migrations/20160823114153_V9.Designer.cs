@@ -8,9 +8,10 @@ using Auditor.Data;
 namespace Auditor.Migrations
 {
     [DbContext(typeof(AuditorDbContext))]
-    partial class AuditorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160823114153_V9")]
+    partial class V9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -89,8 +90,6 @@ namespace Auditor.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("NeedReAction");
 
                     b.Property<string>("ResultName")
                         .HasAnnotation("MaxLength", 256);
