@@ -1,0 +1,109 @@
+﻿@model Auditor.ViewModels.WifiCheck.WifiCheckFormVM
+@{
+    ViewBag.Title = "WiFi проверка. Новая задача";
+}
+@section Styles{
+    <environment names="Development">
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    </environment>
+}
+<div class="container">
+    <div class="page-header">
+        <h3>Новая задача</h3>
+    </div>
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+        <li><a asp-controller="WiFiCheck" asp-action="Index">WiFi проверка</a></li>
+        <li class="active">Новая задача</li>
+    </ol>
+    <div class="panel panel-success">
+        <div class="panel-body">
+
+            <form asp-controller="WiFiCheck" asp-action="Create" method="post" role="form" class="form-horizontal">
+                <fieldset>
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Provider" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Provider" class="form-control" />
+                            <span asp-validation-for="Provider" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CheckDate" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="CheckDate" class="form-control input-sshort" id="checkDateInput" />
+                            <span asp-validation-for="CheckDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TerritoryId" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <select asp-for="TerritoryId" asp-items="@Model.RegionList" class="form-control input-sshort"></select>
+                            <span asp-validation-for="TerritoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AuditorUserId" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <select asp-for="AuditorUserId" asp-items="@Model.AuditorUserList" class="form-control input-sshort"></select>
+                            <span asp-validation-for="TerritoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ViolationsCount" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="ViolationsCount" class="form-control input-xshort" />
+                            <span asp-validation-for="ViolationsCount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaskTime" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="TaskTime" class="form-control input-xshort" />
+                            <span asp-validation-for="TaskTime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Note" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <textarea asp-for="Note" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Note" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <span class="color-red">* - обязательные к заполнению поля</span>
+                    </div>
+                </fieldset>
+                <hr />
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Создать</button>
+                        <button type="button" class="btn btn-danger" onclick="history.go(-1);"><i class="fa fa-trash"></i> Отмена</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{ Html.RenderPartial("_FormScripts"); }
+    <script>
+        $(document).ready(function () {
+            $('#checkDateInput').datepicker({
+                language: "ru",
+                todayHighlight: true
+            });
+        });
+    </script>
+}
