@@ -10,19 +10,19 @@ namespace Auditor.ViewModels.WifiCheck
     public class WifiCheckFormVM
     {
         public int Id { get; set; }
-        [Required(ErrorMessage ="Не указан адрес"), Display(Name ="Адрес *"), MaxLength(256)]
+        [Required(ErrorMessage ="{0} - обязательное поле"), Display(Name ="Адрес"), MaxLength(256)]
         public string Address { get; set; }
-        [Required(ErrorMessage = "Не указан провайдер"), Display(Name = "Провайдер *"), MaxLength(256)]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Провайдер"), MaxLength(256)]
         public string Provider { get; set; }
-        [Required(ErrorMessage = "Не указан исполнитель"), Display(Name = "Ответственный *")]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Ответственный")]
         public int AuditorUserId { get; set; }
-        [Required(ErrorMessage = "Не указан регион"), Display(Name = "Регион *")]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Регион")]
         public int TerritoryId { get; set; }
-        [Required(ErrorMessage = "Не указана дата проверки"), Display(Name = "Дата проверки *"), DataType(DataType.Text)]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Дата проверки"), DataType(DataType.Text)]
         public DateTime CheckDate { get; set; }
-        [Required(ErrorMessage = "Не указано кол-во нарушений"), Display(Name = "Кол-во нарушений *")]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Кол-во нарушений")]
         public int ViolationsCount { get; set; }
-        [Required(ErrorMessage = "Не указано время проверки"), Display(Name = "Время проверки (мин) *")]
+        [Required(ErrorMessage = "{0} - обязательное поле"), Display(Name = "Время проверки (мин)")]
         public int TaskTime { get; set; }
         [Display(Name = "Примечание"), MaxLength(256), DataType(DataType.MultilineText)]
         public string Note { get; set; }
